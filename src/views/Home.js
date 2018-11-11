@@ -1,8 +1,9 @@
 import React from 'react'
 import Header from './Header'
-import Content from './Content'
+import Content from '../components/Content'
 import TimeForm from '../TimeForm'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 
 class Home extends React.Component {
   constructor(props) {
@@ -45,13 +46,12 @@ render()  {
   const apiUrl = this.getApiUrl();
 
   return (
-    <div>
+    <div className="home">
       <Header />
       <Content />
-
-      {!currentTime &&
+      {!this.props.currentTime &&
       <button onClick={this.fetchCurrentTime}> Get Current time</button>}
-      {currentTime && <div>The current time is: {currentTime}</div>}
+      {this.props.currentTime && <div>The current time is: {this.props.currentTime}</div>}
       <TimeForm
         onFormSubmit={this.handleFormSubmit}
         onFormChange={this.handleChange}
@@ -65,6 +65,8 @@ render()  {
 
     )
   }
-}
 
-export default Home;
+}
+const mapStateToProps = state => { return { currentTime: state.currentTime } }
+
+export default connect(mapStateToProps)(Home);
