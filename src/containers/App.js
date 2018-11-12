@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import 'whatwg-fetch';
 import './App.css';
-import Home from '../views/Home';
-import About from '../views/About';
-import TimeForm from '../TimeForm'
+import Home from '../views/Home/Home';
+import About from '../views/About/About';
 
 const App = props => {
   return (
